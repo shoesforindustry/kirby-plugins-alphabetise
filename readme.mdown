@@ -10,7 +10,10 @@ The Alphabetise plugin will alphabetise a given [Kirby CMS](http://getkirby.com/
 
 ## Installation 
 
-Put all the files into your **site/plugins/alphabetise** folder.  If the 'alphabetise' plugin folder doesn't exist then create it.
+Put all the files into your **site/plugins/alphabetise** folderor use the [Kirby CLI](https://github.com/getkirby/cli): In your project folder, from the command line, enter:
+```kirby plugin:install shoesforindustry/kirby-plugins-alphabetise```  
+To update the plugin use:
+```kirby plugin:update shoesforindustry/kirby-plugins-alphabetise```
 
 ## How to use it?
 
