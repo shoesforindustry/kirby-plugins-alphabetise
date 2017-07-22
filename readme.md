@@ -4,10 +4,6 @@
 
 The Alphabetise plugin will alphabetise a given [Kirby CMS](http://getkirby.com/) *page* array or *tag* array and return it for further processing/display as an alphabetised array.
 
-*The array whose key your are trying to sort on should of course only contain letters of the alphabet, if not problems may occur.*
-
-*Also the code (explode) uses a '~' tilde, if you use this in your key, especially at the beginning of the string, then you could run into sorting problems. You could of course manually change it if required.*
-
 
 
 ## Installation
@@ -24,20 +20,20 @@ To update the plugin use:
 
 ## How to use it?
 
-####Alphabetical list of child pages using page title as the key:
+**1. Alphabetical list of child pages using page title as the key:**
+
 #####A
 + Aa page
 + Ab page
-
----
 
 #####B
 + Ba page
 + Bb page
 
----
+
 
 In your template call, it like this:
+
 ```php
 <?php $alphabetise = alphabetise($page->children()->visible()->sortby('title'), array('key' => 'title')); ?>
 ```
@@ -60,13 +56,17 @@ You then want to loop through the returned results and display them for example:
 <?php endforeach ?>
 ```
 
-####Alphabetical list of tags using tag name as the key
+
+
+-----
+
+
+
+**2. Alphabetical list of tags using tag name as the key****
 
 #####A
 + Aa tag
 + Ab tag
-
----
 
 #####B
 + Ba tag
@@ -111,7 +111,11 @@ You can use any valid array element, so for tags you can use also add **$item->r
 
 
 
-#### Set 'orderby' key
+----
+
+
+
+**3. Set 'orderby' key:**
 
 Version 0.0.9 adds a key to alter how the array appears, the default is with letters and then numbers e.g.
 
@@ -134,7 +138,13 @@ Or you can not set the `orderby` key to `SORT_STRING`, to have the numbers liste
 
 
 
-**Note:** *We are using `ksort` so other `sort_flags` might be possible but not tested!*
+## Notes:
+
+The array whose key your are trying to sort on should of course only contain letters of the alphabet, if not problems may occur.
+
+Also the code (explode) uses a `~` tilde, if you use this in your key, especially at the beginning of the string, then you could run into sorting problems. You could of course manually change it if required.
+
+*We are using `ksort` so other `sort_flags` might be possible but not tested!*
 
 **The `orderby` key is not a string!**
 
