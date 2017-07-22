@@ -2,17 +2,20 @@
 
 ## What is it?
 
-The Alphabetise plugin will alphabetise a given [Kirby CMS](http://getkirby.com/) *page* array or *tag* array and return it for further processing/display as an alphabetised array.
+The Alphabetise plugin will alphabetise a given [Kirby CMS](http://getkirby.com/) *page* array or *tag* array and return it for further processing or display as an alphabetised array.
 
 
 
 ## Installation
 
-Put all the files into your **site/plugins/alphabetise** folderor use the [Kirby CLI](https://github.com/getkirby/cli): In your project folder, from the command line, enter:
+Put all the files into your **site/plugins/alphabetise** folder or use the [Kirby CLI](https://github.com/getkirby/cli). 
+To install using the Kirby CLI, from the command line in your project folder:
+
+Install the plugin:
 
 `kirby plugin:install shoesforindustry/kirby-plugins-alphabetise`
 
-To update the plugin use:
+Update the plugin:
 
 `kirby plugin:update shoesforindustry/kirby-plugins-alphabetise`
 
@@ -20,18 +23,14 @@ To update the plugin use:
 
 ## How to use it?
 
-**1. Alphabetical list of child pages using page title as the key:**
+### 1. Alphabetical list of child pages using page title as the key:
 
-**A**
-
-+ Aa page
-+ Ab page
-
-**B**
-
-+ Ba page
-+ Bb page
-
+* **A**
+  * Aa page
+  * Ab page
+* **B**
+  * Ba page
+  * Bb page
 
 
 In your template call, it like this:
@@ -42,7 +41,7 @@ In your template call, it like this:
 The first argument you pass is the sorted **page** array you want to *alphabetise*. The second array **key** argument is so you can set what you want to *alphabetise* by. It should be a string like a page 'title'. The 'sortby' and the 'key' should usually be the same.
 
 You then want to loop through the returned results and display them for example:
-```php+HTML
+```php
 <?php foreach($alphabetise as $letter => $items): ?>
   <h4><?php echo strtoupper($letter) ?></h4>
   <ul>
@@ -60,21 +59,14 @@ You then want to loop through the returned results and display them for example:
 
 
 
------
+### 2. Alphabetical list of tags using tag name as the key:
 
-
-
-**2. Alphabetical list of tags using tag name as the key:**
-
-**A**
-
-+ Aa tag
-+ Ab tag
-
-**B**
-
-+ Ba tag
-+ Bb tag
++ **A**
+  + Aa tag
+  + Ab tag
++ **B**
+  + Ba tag
+  + Bb tag
 
 **You require the tag plugin for this bit to work!** and *'pages'* in this example are the *pages* you want to get *tags* for.  
 (See the [taglcoud plugin documentation](https://github.com/bastianallgeier/kirbycms-extensions/blob/master/plugins/tagcloud/tagcloud.php) for more information.)
@@ -88,7 +80,7 @@ The first argument you pass is the **tagcloud** array you want to *alphabetise*.
 
 You then want to loop through the returned results and display, note we are using **$item->name** not *item->title* as tags don't have titles, for example:
 
-```php+HTML
+```php
 <?php foreach($alphabetise as $letter => $items): ?>
   <h4><?php echo strtoupper($letter) ?></h4>
     <ul>
@@ -105,7 +97,7 @@ You then want to loop through the returned results and display, note we are usin
 ```
 
 You can use any valid array element, so for tags you can use also add **$item->results()** for example, which is the number of items with that tag:
-```php+HTML
+```php
     <li>
         <a href="<?php echo $item->url()?>">
         <?php echo $item->name().' ('.($item->results()).')'?>
@@ -115,11 +107,7 @@ You can use any valid array element, so for tags you can use also add **$item->r
 
 
 
-----
-
-
-
-**3. Set 'orderby' key:**
+###  3. Set 'orderby' key:
 
 Version 0.0.9 adds a key to alter how the array appears, the default is with letters and then numbers e.g.
 
