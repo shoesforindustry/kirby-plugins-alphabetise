@@ -22,11 +22,13 @@ To update the plugin use:
 
 **1. Alphabetical list of child pages using page title as the key:**
 
-#####A
+**A**
+
 + Aa page
 + Ab page
 
-#####B
+**B**
+
 + Ba page
 + Bb page
 
@@ -40,7 +42,7 @@ In your template call, it like this:
 The first argument you pass is the sorted **page** array you want to *alphabetise*. The second array **key** argument is so you can set what you want to *alphabetise* by. It should be a string like a page 'title'. The 'sortby' and the 'key' should usually be the same.
 
 You then want to loop through the returned results and display them for example:
-```php
+```php+HTML
 <?php foreach($alphabetise as $letter => $items): ?>
   <h4><?php echo strtoupper($letter) ?></h4>
   <ul>
@@ -62,13 +64,15 @@ You then want to loop through the returned results and display them for example:
 
 
 
-**2. Alphabetical list of tags using tag name as the key****
+**2. Alphabetical list of tags using tag name as the key:**
 
-#####A
+**A**
+
 + Aa tag
 + Ab tag
 
-#####B
+**B**
+
 + Ba tag
 + Bb tag
 
@@ -84,7 +88,7 @@ The first argument you pass is the **tagcloud** array you want to *alphabetise*.
 
 You then want to loop through the returned results and display, note we are using **$item->name** not *item->title* as tags don't have titles, for example:
 
-```php
+```php+HTML
 <?php foreach($alphabetise as $letter => $items): ?>
   <h4><?php echo strtoupper($letter) ?></h4>
     <ul>
@@ -101,7 +105,7 @@ You then want to loop through the returned results and display, note we are usin
 ```
 
 You can use any valid array element, so for tags you can use also add **$item->results()** for example, which is the number of items with that tag:
-```php
+```php+HTML
     <li>
         <a href="<?php echo $item->url()?>">
         <?php echo $item->name().' ('.($item->results()).')'?>
@@ -133,7 +137,6 @@ Or you can not set the `orderby` key to `SORT_STRING`, to have the numbers liste
 
 ```php
 <?php $alphabetise = alphabetise($page->children()->visible()->sortby('title'), array('key' => 'title', 'orderby'=>SORT_STRING))); ?>
-
 ```
 
 
