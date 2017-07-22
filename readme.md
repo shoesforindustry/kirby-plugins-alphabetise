@@ -8,16 +8,23 @@ The Alphabetise plugin will alphabetise a given [Kirby CMS](http://getkirby.com/
 
 *Also the code (explode) uses a '~' tilde, if you use this in your key, especially at the beginning of the string, then you could run into sorting problems. You could of course manually change it if required.*
 
+
+
 ## Installation
 
 Put all the files into your **site/plugins/alphabetise** folderor use the [Kirby CLI](https://github.com/getkirby/cli): In your project folder, from the command line, enter:
-```kirby plugin:install shoesforindustry/kirby-plugins-alphabetise```  
+
+`kirby plugin:install shoesforindustry/kirby-plugins-alphabetise`
+
 To update the plugin use:
-```kirby plugin:update shoesforindustry/kirby-plugins-alphabetise```
+
+`kirby plugin:update shoesforindustry/kirby-plugins-alphabetise`
+
+
 
 ## How to use it?
 
-####Example 1: Alphabetical list of child pages using page title as the key:
+####Alphabetical list of child pages using page title as the key:
 #####A
 + Aa page
 + Ab page
@@ -53,7 +60,7 @@ You then want to loop through the returned results and display them for example:
 <?php endforeach ?>
 ```
 
-####Example2: Alphabetical list of tags using tag name as the key
+####Alphabetical list of tags using tag name as the key
 
 #####A
 + Aa tag
@@ -100,9 +107,11 @@ You can use any valid array element, so for tags you can use also add **$item->r
         <?php echo $item->name().' ('.($item->results()).')'?>
         </a>
     </li>
-```	  
+```
 
-####Example3: Set 'orderby' key
+
+
+#### Set 'orderby' key
 
 Version 0.0.9 adds a key to alter how the array appears, the default is with letters and then numbers e.g.
 
@@ -111,7 +120,7 @@ Version 0.0.9 adds a key to alter how the array appears, the default is with let
 + 1
 + 2
 
-Or you can not set the 'orderby' key to SORT_STRING, to have the numbers listed first e.g.
+Or you can not set the `orderby` key to `SORT_STRING`, to have the numbers listed first e.g.
 
 + 1
 + 2
@@ -123,7 +132,13 @@ Or you can not set the 'orderby' key to SORT_STRING, to have the numbers listed 
 
 ```
 
-**Note**: *We are using 'ksort' so other 'sort_flags' might be possible but not tested!  The 'orderby' key is not a string!*
+
+
+**Note:** *We are using `ksort` so other `sort_flags` might be possible but not tested!*
+
+**The `orderby` key is not a string!**
+
+
 
 ## Author
 Russ Baldwin  
