@@ -96,7 +96,8 @@ In your template, call it like this:
 ```php
 <?php
   $tagPages = $pages->find('pages');
-  $alphabetise = alphabetise(tagcloud(($tagPages), array('sort' => 'name','sortdir' => 'asc')), array('key' => 'name')); ?>
+  $alphabetise = alphabetise(tagcloud(($tagPages), array('sort' => 'name','sortdir' => 'asc')), array('key' => 'name'));
+?>
 ```
 
 The first argument you pass is the **tagcloud** array containing the *pages* whose *tags* you want to *alphabetise* (see the [taglcoud plugin documentation](https://github.com/bastianallgeier/kirbycms-extensions/blob/master/plugins/tagcloud/tagcloud.php) for more information). The second array's **key** argument determines what to *alphabetise* by. It should be a string like a tag 'name'.
@@ -161,7 +162,7 @@ The array whose *key* your are trying to sort by should of course only contain l
 
 Also the code (explode) uses a `~` tilde - if you use this in your *key*, especially at the beginning of the string, then you could run into sorting problems. You could of course manually change it if required.
 
-*We are using `ksort` so other `sort_flags` might be possible, but are untested!*
+*We are using `ksort`, so other `sort_flags` might be possible, but are untested!*
 
 **The `orderby` key is not a string!**
 
