@@ -31,10 +31,10 @@ The `alphabetise` plugin takes a given [Kirby CMS] (http://getkirby.com/) *page*
   + 2a
   + 2b
 
- 
-In your template, call it like this:
 
 The first argument you pass is the sorted **page** array you want to *alphabetise*. The second array's **key** argument determines what to *alphabetise* by. It should be a string like a page 'title'. The values passed to 'sortBy' and 'key' usually are the same.
+
+In your template, call it like this:
 
 ```php
 
