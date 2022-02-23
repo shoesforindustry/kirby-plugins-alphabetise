@@ -9,7 +9,7 @@
 // -----
 // Russ Baldwin
 // shoesforindustry.net
-// v0.0.9
+// v0.1.0
 // -----
 function alphabetise($parent, $options=array()) {
 
