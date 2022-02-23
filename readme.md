@@ -2,19 +2,10 @@
 
 ## What is it?
 
-The `alphabetise` plugin takes a given [Kirby CMS](http://getkirby.com/) *page* array or *tag* array and returns an alphabetised array that you can then display or further process.
-
+The `alphabetise` plugin takes a given [Kirby CMS] (http://getkirby.com/) *page* array or *tag* array and returns an alphabetised array that you can then display or further process. Although it is not an actual Kirby v3 Plugin it will work with K3.
 
 
 ## Installation
-
-### Git submodule
-
-You can download this plugin as a [submodule](https://github.com/blog/2104-working-with-submodules):
-
-```text
-git submodule add https://github.com/shoesforindustry/kirby-plugins-alphabetise.git site/plugins/alphabetise
-```
 
 
 ### Clone or download
@@ -23,54 +14,45 @@ git submodule add https://github.com/shoesforindustry/kirby-plugins-alphabetise.
 2. Unzip / Move the folder to `site/plugins` and rename it to `alphabetise`.
 
 
-### Kirby CLI
-
-Install the plugin:
-
-```text
-kirby plugin:install shoesforindustry/kirby-plugins-alphabetise`
-```
-
-Update the plugin:
-
-```text
-kirby plugin:update shoesforindustry/kirby-plugins-alphabetise
-```
-
-
-
 ## How to use it?
 
 ### 1. Alphabetical list of child pages using page title as the key:
 
 * **A**
-  * Aa page
-  * Ab page
+  * Aa 
+  * Ab 
 * **B**
-  * Ba page
-  * Bb page
+  * Ba 
+  * Bb
++ **1**
+  + 1a
+  + 1b
++ **2**
+  + 2a
+  + 2b
 
+ 
 In your template, call it like this:
 
+The first argument you pass is the sorted **page** array you want to *alphabetise*. The second array's **key** argument determines what to *alphabetise* by. It should be a string like a page 'title'. The values passed to 'sortBy' and 'key' usually are the same.
+
 ```php
-<?php
-  $sortedPages = $page->children()->visible()->sortBy('title');
-  $alphabetise = alphabetise($sortedPages, array('key' => 'title'));
-?>
+
+<?php $alphabetise = alphabetise($page->children()->listed()->sortby('title'), array('key' => 'title')); ?>
+
 ```
 
-The first argument you pass is the sorted **page** array you want to *alphabetise*. The second array's **key** argument determines what to *alphabetise* by. It should be a string like a page 'title'. The values passed to 'sortBy' and 'key' usually are the same.
 
 You then want to loop through the returned results and display them, for example:
 
 ```php
 <?php foreach($alphabetise as $letter => $items) : ?>
-  <h4><?php echo str::upper($letter) ?></h4>
+  <h2><?= str::upper($letter) ?></h2>
   <ul>
   <?php foreach($items as $item): ?>
     <li>
-      <a href="<?php echo $item->url()?>">
-        <?php echo $item->title()?>
+      <a href="<?= $item->url()?>">
+        <?= $item->title()?>
       </a>
    	</li>
   <?php endforeach ?>
@@ -79,61 +61,24 @@ You then want to loop through the returned results and display them, for example
 <?php endforeach ?>
 ```
 
-
-### 2. Alphabetical list of tags using tag name as the key:
+Result:
 
 + **A**
-  + Aa tag
-  + Ab tag
+  + Aa
+  + Ab
 + **B**
-  + Ba tag
-  + Bb tag
-
-**For this to work, the `tagcloud` plugin must be installed!**
-
-In your template, call it like this:
-
-```php
-<?php
-  $tagPages = $pages->find('pages');
-  $alphabetise = alphabetise(tagcloud(($tagPages), array('sort' => 'name','sortdir' => 'asc')), array('key' => 'name'));
-?>
-```
-
-The first argument you pass is the **tagcloud** array containing the *pages* whose *tags* you want to *alphabetise* (see the [taglcoud plugin documentation](https://github.com/bastianallgeier/kirbycms-extensions/blob/master/plugins/tagcloud/tagcloud.php) for more information). The second array's **key** argument determines what to *alphabetise* by. It should be a string like a tag 'name'.
-
-You then want to loop through the returned results and display them - **be aware** that we're using *$item->name* instead of *item->title* as tags don't have titles - for example:
-
-```php
-<?php foreach($alphabetise as $letter => $items) : ?>
-  <h4><?php echo str::upper($letter) ?></h4>
-  <ul>
-  <?php foreach($items as $item): ?>
-   	<li>
-   	  <a href="<?php echo $item->url()?>">
-   	    <?php echo $item->name()?>
-      </a>
-   	</li>
-  <?php endforeach ?>
-  </ul>
-  <hr>
-<?php endforeach ?>
-```
-
-You can use any valid array element, so for tags you can also add **$item->results()** for example, which returns the number of items with that tag:
-
-```php
-<li>
-  <a href="<?php echo $item->url()?>">
-    <?php echo $item->name() . ' (' . ($item->results()) . ')' ?>
-  </a>
-</li>
-```
-
+  + Ba
+  + Bb
++ **1**
+  + 1a
+  + 1b
++ **2**
+  + 2a
+  + 2b
 
 ### 3. Set 'orderBy' key:
 
-Version 0.0.9 adds a key to alter how the array appears, by default letters before numbers, e.g.
+Version 0.0.9 added a key to alter how the array appears, by default letters before numbers, e.g.
 
 + A
 + B
@@ -148,12 +93,9 @@ Or you can set the `orderby` key to `SORT_STRING` so numbers are listed first, e
 + B
 
 ```php
-<?php
-  $sortedPages = $page->children()->visible()->sortBy('title');
-  $alphabetise = alphabetise($sortedPages, array('key' => 'title', 'orderby'=>SORT_STRING)));
-?>
-```
+<?php $alphabetise = alphabetise($page->children()->listed()->sortby('title'), array('key' => 'title', 'orderby'=>SORT_STRING));?>
 
+```
 
 
 ## Notes:
